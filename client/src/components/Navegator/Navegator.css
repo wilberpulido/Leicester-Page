@@ -1,0 +1,33 @@
+.navegatorStyle{
+    background-color: #0A2F57;
+    color: white;
+    width: 1350px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+}
+
+.title{
+    position: relative;
+    font-size: 2rem;
+    left: 110px;
+}
+
+.userName{
+    position: relative;
+    overflow: hidden;
+    font-size: 16px;
+    width: 190px;
+    left: 470px;
+}
+
+.profile{
+    position: relative;
+    left: 450px;
+    background-color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 35px;
+    overflow: hidden;
+}

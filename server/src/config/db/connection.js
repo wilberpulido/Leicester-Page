@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/foxes',{
+module.exports = mongoose.connect('mongodb://localhost/foxes',{
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,

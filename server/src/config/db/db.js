@@ -25,13 +25,15 @@ async function fillDb(){
             }
 
             if (validate) {
+                
+                const date = new Date(match.kickoff.label.split(",")[0]);
+                
+                match.kickoff.label = date;
 
                 const matchModel = new Matches(match);
-
                 Matches.find({id:matchModel.id},async(err,docs)=>{
                     if(docs.length === 0 ){
                         await matchModel.save();
-
                     }
                 })
             }
@@ -42,7 +44,7 @@ async function fillDb(){
 
 function db(){
 
-    // fillDb();
+    fillDb();
 
     cron.schedule('0 0 * * *',async()=>{
         await fillDb();

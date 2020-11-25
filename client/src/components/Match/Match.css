@@ -1,0 +1,69 @@
+.containerMatch{
+    scroll-snap-align: start;
+
+}
+
+.imgPosition{
+    margin-top: 10px;
+    margin-left: 25px;
+}
+
+.logoPremierLeague{
+    width: 90px;
+    height: 90px;
+}
+.logoEuropeLeague{
+    width: 70px;
+    height: 90px;
+}
+.logoEFL{
+    width: 90px;
+    height: 90px;
+}
+.logoFriendly{
+    width: 100px;
+    height: 100px;
+}
+.logoFaCup{
+    width: 100px;
+    height: 90px;
+}
+
+.cardHearder{
+    display: flex;
+    align-items: center;
+}
+
+.cardBody{
+    display: grid;
+    grid-template-columns: 1fr 0.6fr 1fr;
+    grid-column-gap: 10px;
+    grid-template-rows: 100px;
+}
+.clubName{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.2rem;
+}
+.cardFooter{
+    height: 100px;
+}
+
+#cardTitle{
+    font-size: 1.4rem;
+    position: relative;
+    left: 60px;
+}
+.sectionBox::-webkit-scrollbar {
+    width: 15px;
+}
+.sectionBox::-webkit-scrollbar-thumb {
+    background: #0B56A4;
+    border-radius: 30px;
+    height: 40px;
+}
+.sectionBox::-webkit-scrollbar-thumb:hover {
+    background: rgb(0, 140, 255);
+}
