@@ -41,7 +41,7 @@
         .catch(err=> err);
 
 
-    return respuesta;
+    return respuesta.res;
   }
 
 export {handlerOnClickIdDateFetch,handlerOnClickDateRangeFetch,handlerOnClickSearchStandingsFetch,searchLastGame,searchLastFiftyGame};

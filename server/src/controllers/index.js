@@ -83,7 +83,6 @@ router.get('/searchStandingsRangeDates/:startDate?/:endDate?',async(req,res)=>{
 
     const matches = await functionServices.searchMatchRangeDates(req.query.startDate , req.query.endDate);
 
-
     let statisticsRangeDates = functionServices.matchStatistics(matches);
 
     // "EN_PR", "Premier League" Liga Premier de Inglaterra por puntos
@@ -95,6 +94,7 @@ router.get('/searchStandingsRangeDates/:startDate?/:endDate?',async(req,res)=>{
     if (statisticsRangeDates.length === 0) {
         return res.status(404).send({res: []})
     }
+
     return res.json({res: statisticsRangeDates});
 });
 

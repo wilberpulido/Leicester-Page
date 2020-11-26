@@ -24,7 +24,7 @@ let functionServices = {
         startDate = this.dateFormatTransformation(startDateFormat);
         endDate = this.dateFormatTransformation(endDateFormat);
 
-        return await Matches.find({"kickoff.label": {$gte: startDate , $lte: endDate}});
+        return await Matches.find({"kickoff.label": {$gte: startDate , $lte: endDate}}).sort({_id: -1});
     },
 
     matchStatistics(arrayMatches){

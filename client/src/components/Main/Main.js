@@ -16,15 +16,11 @@ function Main(){
     padding: "30px 75px",
     gridTemplateColumns: "1fr 1fr",
     gridColumnGap: "80px",
-    gridTemplateRows: "60px 300px 60px 400px 60px 300px",
+    gridTemplateRows: "60px 300px 60px 410px 60px 400px",
     gridRowGap: "30px",
   }
   
-  const styleFirstSection = {
-    overflowY: "auto",
-    scrollSnapType:"y mandatory",
-  }
-  const styleSecondSection = {
+  const styleScrollMatch = {
     overflowY: "auto",
     scrollSnapType:"y mandatory",
     height: "300px",
@@ -35,6 +31,7 @@ function Main(){
     lastFiftyGame: [],
     matchIdDate: [],
     matchesForRange: [],
+    standingsForRange: [],
   });
 
   const [search,setSearch] = useState({
@@ -67,27 +64,8 @@ function Main(){
     return setSearch({...search,[key]:value})
     
   }
-
-  async function handlerOnClickDateRange(e){
-
-    e.preventDefault();
-
-    const matchesForRange = await handlerOnClickDateRangeFetch(search.startDate,search.endDate);
-
-    console.log("prueba:",matchesForRange);
-
-    if (matchesForRange.length > 0) {
-      setData({
-        ...data,
-        matchesForRange: matchesForRange,
-      });
-    }else {
-      alert("No se ha conseguido el juego")
-    }
-  }
-
+  
   async function handlerOnClickIdDate(e){
-
     e.preventDefault();
 
     const matchIdDate = await handlerOnClickIdDateFetch(search.date,search.id);
@@ -102,6 +80,35 @@ function Main(){
     }
 
   }
+  async function handlerOnClickDateRange(e){
+    e.preventDefault();
+
+    const matchesForRange = await handlerOnClickDateRangeFetch(search.startDate,search.endDate);
+
+    if (matchesForRange.length > 0) {
+      setData({
+        ...data,
+        matchesForRange: matchesForRange,
+      });
+    }else {
+      alert("No se ha conseguido el juego")
+    }
+  }
+
+  async function handlerOnClickStandingsRange(e){
+    e.preventDefault();
+
+    const standingsForRange = await handlerOnClickSearchStandingsFetch(search.startDate,search.endDate);
+
+    if (standingsForRange.length > 0) {
+      setData({
+        ...data,
+        standingsForRange: standingsForRange,
+      });
+    }else {
+      alert("No se ha conseguido el juego")
+    }
+  }
 
   return(<div style = {styleMain}>
 
@@ -113,13 +120,13 @@ function Main(){
     LAST FIFTY GAME
   </SectionTitle>
 
-  <SectionBox styleSectionBox = {styleFirstSection}>
+  <SectionBox>
     {/* data is an array the return of a request for backend */}
     <Match data = {data.lastGame}/>
 
   </SectionBox>
 
-  <SectionBox styleSectionBox = {styleFirstSection}>
+  <SectionBox>
     {/* data is an array the return of a request for backend */}
     <Match data = {data.lastFiftyGame}/>
     
@@ -133,7 +140,7 @@ function Main(){
     SEARCH MATCH FOR RANGE DATE
   </SectionTitle>
 
-  <SectionBox styleSectionBox = {styleFirstSection}>
+  <SectionBox>
     <Form onChange = {handlerOnChange} onClick = {handlerOnClickIdDate}
       firstLabel = "ENTER ID" typeFirstInput = "number" nameFirstInput = "id"
       secondLabel = "ENTER DATE" typeSecondInput="date" nameSecondInput = "date"/>
@@ -142,33 +149,31 @@ function Main(){
   </SectionBox>
 
   <SectionBox>
-  <Form onChange = {handlerOnChange} onClick = {handlerOnClickDateRange}
-      firstLabel = "START DATE" typeFirstInput = "date" nameFirstInput = "startDate"
-      secondLabel = "END DATE" typeSecondInput="date"  nameSecondInput = "endDate"/>
+    <Form onChange = {handlerOnChange} onClick = {handlerOnClickDateRange}
+        firstLabel = "START DATE" typeFirstInput = "date" nameFirstInput = "startDate"
+        secondLabel = "END DATE" typeSecondInput="date"  nameSecondInput = "endDate"/>
 
-  <div className= "scrollBox" style = {styleSecondSection}>
-      <Match data = {data.matchesForRange}/>
+    <div className= "scrollBox" style = {styleScrollMatch}>
+        <Match data = {data.matchesForRange}/>
+    </div>
+  </SectionBox>
+
+  <div style = {{gridColumnStart: 1, gridColumnEnd:3,}}>
+    <SectionTitle>
+      STANDINGS RANGE DATES
+    </SectionTitle>
   </div>
 
-  </SectionBox>
-  <SectionBox styleSectionBox = {styleFirstSection}>
-    HOLAAAAAAAAAAAAA
-  </SectionBox>
-  <SectionBox styleSectionBox = {styleFirstSection}>
-    HOLAAAAAAAAAAAAA
-  </SectionBox>
-  <SectionBox styleSectionBox = {styleFirstSection}>
-    HOLAAAAAAAAAAAAA
-  </SectionBox>
-  <SectionBox styleSectionBox = {styleFirstSection}>
-    HOLAAAAAAAAAAAAA
-  </SectionBox>
-  <SectionBox styleSectionBox = {styleFirstSection}>
-    HOLAAAAAAAAAAAAA
-  </SectionBox>
-  <SectionBox styleSectionBox = {styleFirstSection}>
-    HOLAAAAAAAAAAAAA
-  </SectionBox>
+  <div style = {{gridColumnStart: 1, gridColumnEnd:3,}}>
+    <SectionBox styleBox = {{height: "400px"}} >
+      <div className = "centeredFlex">
+        <Form onChange = {handlerOnChange} onClick = {handlerOnClickStandingsRange}
+            firstLabel = "START DATE" typeFirstInput = "date" nameFirstInput = "startDate"
+            secondLabel = "END DATE" typeSecondInput="date"  nameSecondInput = "endDate"/>
+      </div>
+
+    </SectionBox>
+  </div>
 
 </div>
 )

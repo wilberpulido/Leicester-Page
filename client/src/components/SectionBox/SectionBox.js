@@ -3,9 +3,9 @@ import './SectionBox.css';
 
 function SectionBox(props){
 
-  let style = props.styleSectionBox;
+  const styleBox = props.styleBox;
 
-  return(<div className = "sectionBox scrollBox" style = {style} >
+  return(<div className = "sectionBox scrollBox" style = {styleBox} >
     {props.children}
   </div>
 )
