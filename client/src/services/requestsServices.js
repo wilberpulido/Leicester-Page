@@ -21,7 +21,7 @@
         .then(res=>res.json())
         .catch(err=> err)
 
-    return respuesta;
+    return respuesta.res;
     
   }
 
@@ -31,7 +31,7 @@
         .then(res=> res.json())
         .catch(err=> err)
 
-    return respuesta;
+    return respuesta.res;
   }
 
   async function handlerOnClickSearchStandingsFetch(startDate,endDate){

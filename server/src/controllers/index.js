@@ -20,7 +20,7 @@ router.get('/lastGame',async(req,res)=>{
         return  res.json({res:lastGame});
     }
     if (lastGame.length === 0) {
-        return  res.status(404).json({err: "No results found"});
+        return  res.status(404).json({res:[]});
     }
 
 
@@ -33,7 +33,7 @@ router.get('/lastFiftyGame',async(req,res)=>{
         return  res.json({res:lastFiftyGames});
     }
     if (lastFiftyGames.length === 0) {
-        return  res.status(404).json({err: "No results found"});
+        return  res.status(404).json({res:[]});
     }
 
 })
@@ -66,7 +66,7 @@ router.get('/searchMatchForIdDate/:id?/:date?',async(req,res)=>{
 
     }
     if (!matchForDate.length && !matchForId.length) {
-        return res.status(404).send({err: "No results found"})
+        return res.status(404).send({res: []})
     }
 
     res.json({res: response});
@@ -92,7 +92,10 @@ router.get('/searchStandingsRangeDates/:startDate?/:endDate?',async(req,res)=>{
     // "EN_LC" EFL Cup Copa de la Liga Por eliminacion directa
     // "IG_OF" "Other Club Friendlies" amistosos
 
-    res.json({res: statisticsRangeDates});
+    if (statisticsRangeDates.length === 0) {
+        return res.status(404).send({res: []})
+    }
+    return res.json({res: statisticsRangeDates});
 });
 
 

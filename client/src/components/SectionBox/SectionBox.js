@@ -1,10 +1,11 @@
 import React from 'react';
+import './SectionBox.css';
 
 function SectionBox(props){
 
   let style = props.styleSectionBox;
 
-  return(<div className = "sectionBox" style = {style} >
+  return(<div className = "sectionBox scrollBox" style = {style} >
     {props.children}
   </div>
 )

@@ -1,30 +1,15 @@
 import './App.css';
-import Form from '../Form/Form';
 import Navegator from '../Navegator/Navegator';
 import Main from '../Main/Main';
-import React,{useEffect,useState} from 'react';
+import React from 'react';
 
 function App() {
-
-  const [search,setSearch] = useState({
-    id:'',
-    date: '',
-    startDate: '',
-    endDate: '',
-  });
-
-  function handlerOnChange(e){
-    const key = e.target.name;
-    const value = e.target.value;
-    return setSearch({...search,[key]:value})
-  }
 
   return (
     <div className="desktop">
       <div className="container">
 
       <Navegator/>
-
 
       <Main/>
 

@@ -18,3 +18,15 @@
   align-items: center;
   justify-content: center;
 }
+.scrollBox::-webkit-scrollbar {
+  width: 15px;
+}
+.scrollBox::-webkit-scrollbar-thumb {
+  background: #0B56A4;
+  border-radius: 30px;
+  height: 40px;
+}
+.scrollBox::-webkit-scrollbar-thumb:hover {
+  background: rgb(0, 140, 255);
+}
+
