@@ -33,25 +33,25 @@
     align-items: center;
 }
 
-.cardBody{
+.cardMatchBody{
     display: grid;
     grid-template-columns: 1fr 0.6fr 1fr;
     grid-column-gap: 10px;
     grid-template-rows: 100px;
 }
-.clubName{
+.matchClubName{
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     font-size: 1.2rem;
 }
-.cardFooter{
+.cardMatchFooter{
     height: 100px;
 }
 
-#cardTitle{
+#cardMatchTitle{
     font-size: 1.4rem;
     position: relative;
-    left: 60px;
+    left: 65px;
 }

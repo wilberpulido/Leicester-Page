@@ -3,6 +3,7 @@ import SectionBox from '../SectionBox/SectionBox';
 import SectionTitle from '../SectionTitle/SectionTitle';
 import Match from '../Match/Match';
 import Form from '../Form/Form';
+import StandingsBox from '../StandingsBox/StandingsBox';
 import {handlerOnClickIdDateFetch,handlerOnClickDateRangeFetch,handlerOnClickSearchStandingsFetch,searchLastGame,searchLastFiftyGame} from "../../services/requestsServices";
 import './Main.css';
 
@@ -16,7 +17,7 @@ function Main(){
     padding: "30px 75px",
     gridTemplateColumns: "1fr 1fr",
     gridColumnGap: "80px",
-    gridTemplateRows: "60px 300px 60px 410px 60px 400px",
+    gridTemplateRows: "60px 300px 60px 410px 60px 500px",
     gridRowGap: "30px",
   }
   
@@ -37,8 +38,10 @@ function Main(){
   const [search,setSearch] = useState({
     id:'',
     date: '',
-    startDate: '',
-    endDate: '',
+    startDateMatches: '',
+    endDateMatches: '',
+    startDateStandings: '',
+    endDateStandings: '',
   });
   
   useEffect(()=>{
@@ -71,11 +74,15 @@ function Main(){
     const matchIdDate = await handlerOnClickIdDateFetch(search.date,search.id);
 
     if (matchIdDate.length > 0) {
-      setData({
+     return  setData({
         ...data,
         matchIdDate: matchIdDate,
       });
     }else {
+      setData({
+        ...data,
+        matchIdDate: [],
+      });
       alert("No se ha conseguido el juego")
     }
 
@@ -83,7 +90,16 @@ function Main(){
   async function handlerOnClickDateRange(e){
     e.preventDefault();
 
-    const matchesForRange = await handlerOnClickDateRangeFetch(search.startDate,search.endDate);
+    if (new Date(search.startDateMatches) > new Date(search.endDateMatches)) {
+      alert("The start date is after the end date");
+
+      return setData({
+          ...data,
+          matchesForRange: [],
+        })
+    }
+
+    const matchesForRange = await handlerOnClickDateRangeFetch(search.startDateMatches,search.endDateMatches);
 
     if (matchesForRange.length > 0) {
       setData({
@@ -91,6 +107,10 @@ function Main(){
         matchesForRange: matchesForRange,
       });
     }else {
+      setData({
+        ...data,
+        matchesForRange: [],
+      });
       alert("No se ha conseguido el juego")
     }
   }
@@ -98,15 +118,35 @@ function Main(){
   async function handlerOnClickStandingsRange(e){
     e.preventDefault();
 
-    const standingsForRange = await handlerOnClickSearchStandingsFetch(search.startDate,search.endDate);
+    if (new Date(search.startDateStandings) > new Date(search.endDateStandings)) {
+      alert("The start date is after the end date");
+      return setData({
+          ...data,
+          standingsForRange: [],
+        })
+    }
+
+    const standingsForRange = await handlerOnClickSearchStandingsFetch(search.startDateStandings,search.endDateStandings);
+
+    if (typeof standingsForRange === "undefined") {
+      return setData({
+        ...data,
+        standingsForRange: [],
+      });
+    }
 
     if (standingsForRange.length > 0) {
-      setData({
+      return setData({
         ...data,
         standingsForRange: standingsForRange,
       });
     }else {
-      alert("No se ha conseguido el juego")
+      setData({
+        ...data,
+        standingsForRange: [],
+      });
+      
+      return alert("No se ha conseguido el juego");
     }
   }
 
@@ -150,8 +190,8 @@ function Main(){
 
   <SectionBox>
     <Form onChange = {handlerOnChange} onClick = {handlerOnClickDateRange}
-        firstLabel = "START DATE" typeFirstInput = "date" nameFirstInput = "startDate"
-        secondLabel = "END DATE" typeSecondInput="date"  nameSecondInput = "endDate"/>
+        firstLabel = "START DATE" typeFirstInput = "date" nameFirstInput = "startDateMatches"
+        secondLabel = "END DATE" typeSecondInput="date"  nameSecondInput = "endDateMatches"/>
 
     <div className= "scrollBox" style = {styleScrollMatch}>
         <Match data = {data.matchesForRange}/>
@@ -165,11 +205,15 @@ function Main(){
   </div>
 
   <div style = {{gridColumnStart: 1, gridColumnEnd:3,}}>
-    <SectionBox styleBox = {{height: "400px"}} >
+    <SectionBox style = {{height: "500px"}} >
       <div className = "centeredFlex">
         <Form onChange = {handlerOnChange} onClick = {handlerOnClickStandingsRange}
-            firstLabel = "START DATE" typeFirstInput = "date" nameFirstInput = "startDate"
-            secondLabel = "END DATE" typeSecondInput="date"  nameSecondInput = "endDate"/>
+            firstLabel = "START DATE" typeFirstInput = "date" nameFirstInput = "startDateStandings"
+            secondLabel = "END DATE" typeSecondInput="date"  nameSecondInput = "endDateStandings"/>
+      </div>
+
+      <div style={{height: "390px" , flexWrap: "wrap"}} className = "centeredFlex">
+        <StandingsBox  data = {data.standingsForRange}/>
       </div>
 
     </SectionBox>
