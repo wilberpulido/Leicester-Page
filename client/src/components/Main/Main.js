@@ -43,9 +43,8 @@ function Main(){
     startDateStandings: '',
     endDateStandings: '',
   });
-  
+
   useEffect(()=>{
-    
     async function fetchMydb(){
       
       const lastGame = await searchLastGame();

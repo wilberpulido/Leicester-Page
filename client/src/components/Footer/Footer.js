@@ -7,7 +7,6 @@ function Footer(){
 
     prueba
 
-
   </footer>)
 }
 

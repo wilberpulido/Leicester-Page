@@ -6,7 +6,7 @@ const Matches = require('../models/matches');
 async function fillDb(){
 
     const page = await axios.get(`https://footballapi-lcfc.pulselive.com/football/fixtures?teams=26&compSeasons=&homeTeams=&page=0&pageSize=100&sort=desc&statuses=C&altIds=true&provisional=false`)
-        .catch(err=> console.log(err))
+        .catch(err=> console.log(err));
 
     const numPages = page.data.pageInfo.numPages;
 
