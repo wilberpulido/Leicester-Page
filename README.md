@@ -8,20 +8,20 @@ To install this project, it is necessary to have npm.
 
 Once the main branch has been cloned, you must execute the following commands via console.
 
-````bash
+```bash
 npm install
 ```
 
-````bash
+```bash
 npm install iclient
 ```
 
-````bash
+```bash
 npm install iserver
 ```
 ### With Docker
 
-````bash
+```bash
 docker run -d -p 27017-27019:27017-27019 --name pruebademongo1 mongo
 ```
 ### Without Docker
@@ -30,7 +30,7 @@ Install mongoDB from the official site, and run the commands from console to sta
 
 It can be through an executable or using in console the command:
 
-````bash
+```bash
 mongo
 ```
 Instrucciones en español
