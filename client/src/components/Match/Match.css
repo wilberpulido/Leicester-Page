@@ -1,0 +1,57 @@
+.containerMatch{
+    scroll-snap-align: start;
+}
+
+.imgPosition{
+    margin-top: 10px;
+    margin-left: 25px;
+}
+
+.logoPremierLeague{
+    width: 90px;
+    height: 90px;
+}
+.logoEuropeLeague{
+    width: 70px;
+    height: 90px;
+}
+.logoEFL{
+    width: 90px;
+    height: 90px;
+}
+.logoFriendly{
+    width: 100px;
+    height: 100px;
+}
+.logoFaCup{
+    width: 100px;
+    height: 90px;
+}
+
+.cardHearder{
+    display: flex;
+    align-items: center;
+}
+
+.cardMatchBody{
+    display: grid;
+    grid-template-columns: 1fr 0.6fr 1fr;
+    grid-column-gap: 10px;
+    grid-template-rows: 100px;
+}
+.matchClubName{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.2rem;
+}
+.cardMatchFooter{
+    height: 100px;
+}
+
+#cardMatchTitle{
+    font-size: 1.4rem;
+    position: relative;
+    left: 65px;
+}

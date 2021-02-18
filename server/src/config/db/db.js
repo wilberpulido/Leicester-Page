@@ -6,7 +6,7 @@ const Matches = require('../models/matches');
 async function fillDb(){
 
     const page = await axios.get(`https://footballapi-lcfc.pulselive.com/football/fixtures?teams=26&compSeasons=&homeTeams=&page=0&pageSize=100&sort=desc&statuses=C&altIds=true&provisional=false`)
-        .catch(err=> console.log(err))
+        .catch(err=> console.log(err));
 
     const numPages = page.data.pageInfo.numPages;
 
@@ -25,13 +25,15 @@ async function fillDb(){
             }
 
             if (validate) {
+                
+                const date = new Date(match.kickoff.label.split(",")[0]);
+                
+                match.kickoff.label = date;
 
                 const matchModel = new Matches(match);
-
                 Matches.find({id:matchModel.id},async(err,docs)=>{
                     if(docs.length === 0 ){
                         await matchModel.save();
-
                     }
                 })
             }
@@ -42,7 +44,7 @@ async function fillDb(){
 
 function db(){
 
-    // fillDb();
+    fillDb();
 
     cron.schedule('0 0 * * *',async()=>{
         await fillDb();

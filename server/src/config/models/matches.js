@@ -30,7 +30,7 @@ const MatchesSchema = new Schema({
     kickoff:{
         completeness: Number,
         millis: Number,
-        label: String,
+        label: Date,
         gmtOffset: {type: Number},
     },
     teams:[

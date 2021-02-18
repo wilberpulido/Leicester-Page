@@ -15,7 +15,7 @@ const router = require('./config/routers/routers');
 app.set('port', process.env.PORT || 5000);
 const PORT = app.get('port');
 
-app.use(express.static(__dirname + "../../client/public"));
+app.use(express.static(path.join(__dirname,"../../client/public")));
 
 //midlewares
 // to view request

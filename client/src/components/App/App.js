@@ -1,14 +1,22 @@
 import './App.css';
+import Navegator from '../Navegator/Navegator';
+import Main from '../Main/Main';
+import Footer from '../Footer/Footer';
+import React from 'react';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-         Ready
-        </p>
 
-      </header>
+  return (
+    <div className="desktop">
+      <div className="container">
+
+      <Navegator/>
+
+      <Main/>
+
+      <Footer/>
+
+      </div>
     </div>
   );
 }
